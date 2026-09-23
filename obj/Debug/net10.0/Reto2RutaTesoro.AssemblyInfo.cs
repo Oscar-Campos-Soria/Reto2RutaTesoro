@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reto2RutaTesoro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93401dfbf94155d4319459daab851f871ad7b7b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reto2RutaTesoro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reto2RutaTesoro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
