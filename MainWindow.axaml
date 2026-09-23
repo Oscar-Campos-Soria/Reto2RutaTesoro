@@ -1,0 +1,78 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ds="using:Reto2RutaTesoro.DataStructures"
+        mc:Ignorable="d" d:DesignWidth="850" d:DesignHeight="550"
+        x:Class="Reto2RutaTesoro.MainWindow"
+        Title="La Ruta del Tesoro Perdido - Lista Simplemente Enlazada"
+        Width="900" Height="580"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid RowDefinitions="Auto, *, Auto" Margin="15">
+        
+        <!-- Encabezado -->
+        <Border Grid.Row="0" Background="#2D2D30" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="🏴‍☠️ La Ruta del Tesoro Perdido" FontSize="20" FontWeight="Bold" Foreground="#FFD700" HorizontalAlignment="Center"/>
+                <TextBlock Text="Estructura de Datos: Lista Simplemente Enlazada (Sin colecciones nativas)" FontSize="12" Foreground="#AAAAAA" HorizontalAlignment="Center" Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Captura de Datos y Tabla -->
+        <Grid Grid.Row="1" ColumnDefinitions="320, 15, *">
+            
+            <!-- Panel Izquierdo: Formularios -->
+            <Border Grid.Column="0" Background="#1E1E1E" CornerRadius="8" Padding="15">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Gestión de Ubicación" FontSize="16" FontWeight="SemiBold" Foreground="#FFFFFF" Margin="0,0,0,5"/>
+
+                        <TextBlock Text="ID de Ubicación:" Foreground="#CCCCCC"/>
+                        <NumericUpDown x:Name="numId" Minimum="1" Maximum="999" FormatString="0" ParsingNumberStyle="Integer" Value="1"/>
+
+                        <TextBlock Text="Nombre de Ubicación:" Foreground="#CCCCCC"/>
+                        <TextBox x:Name="txtNombre" PlaceholderText="Ej. Isla Calavera"/>
+
+                        <TextBlock Text="Pista del Tesoro:" Foreground="#CCCCCC"/>
+                        <TextBox x:Name="txtPista" PlaceholderText="Ej. Buscar tras la cascada" AcceptsReturn="False"/>
+
+                        <TextBlock Text="Nivel de Peligro (1-10):" Foreground="#CCCCCC"/>
+                        <NumericUpDown x:Name="numPeligro" Minimum="1" Maximum="10" Value="1" FormatString="0"/>
+
+                        <!-- Botones -->
+                        <StackPanel Spacing="8" Margin="0,15,0,0">
+                            <Button x:Name="btnAgregar" Content="➕ Agregar a la Ruta" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#2E7D32" Foreground="White"/>
+                            <Button x:Name="btnBuscar" Content="🔍 Buscar por ID" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#0277BD" Foreground="White"/>
+                            <Button x:Name="btnModificar" Content="✏️ Modificar" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#F57F17" Foreground="White"/>
+                            <Button x:Name="btnEliminar" Content="🗑️ Eliminar Nodo" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#C62828" Foreground="White"/>
+                            <Button x:Name="btnLimpiar" Content="🧹 Limpiar Campos" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#424242" Foreground="White"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Panel Derecho: Visualización -->
+            <Border Grid.Column="2" Background="#1E1E1E" CornerRadius="8" Padding="15">
+                <Grid RowDefinitions="Auto, *">
+                    <TextBlock Grid.Row="0" Text="Vista de la Lista Enlazada (Inicio → ... → NULL)" FontSize="16" FontWeight="SemiBold" Foreground="#FFFFFF" Margin="0,0,0,10"/>
+                    
+                    <DataGrid Grid.Row="1" x:Name="dgNodos" x:DataType="ds:NodoDTO" AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="All" BorderThickness="1" BorderBrush="#333333">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" x:DataType="ds:NodoDTO" Binding="{CompiledBinding Id}" Width="60"/>
+                            <DataGridTextColumn Header="Ubicación" x:DataType="ds:NodoDTO" Binding="{CompiledBinding Nombre}" Width="160"/>
+                            <DataGridTextColumn Header="Pista" x:DataType="ds:NodoDTO" Binding="{CompiledBinding Pista}" Width="*"/>
+                            <DataGridTextColumn Header="Peligro" x:DataType="ds:NodoDTO" Binding="{CompiledBinding Peligro}" Width="75"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Barra de Estado -->
+        <Border Grid.Row="2" Background="#2D2D30" CornerRadius="6" Padding="10" Margin="0,15,0,0">
+            <TextBlock x:Name="lblMensaje" Text="Estado: Esperando acciones..." Foreground="#81C784" FontWeight="Medium"/>
+        </Border>
+
+    </Grid>
+</Window>
